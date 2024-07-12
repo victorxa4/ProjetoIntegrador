@@ -36,8 +36,12 @@ class Account(AbstractUser):
     )
 
     def save(self, *args, **kwargs):
-        #if self.is_superuser and self.pk: # if updating existing on djangoadmin
-        self.set_password(self.password)
+        print(not self.is_superuser)
+        if not self.is_superuser: # if not superuser
+            self.set_password(self.password)
+        super(Account, self).save(*args, **kwargs)
+
+    def create_superuser(self, *args, **kwargs):
         super(Account, self).save(*args, **kwargs)
         
 class Luggage(models.Model):
