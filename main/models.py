@@ -35,10 +35,15 @@ class Account(AbstractUser):
         default=account_type_choices.consumer
     )
 
-    def save(self, *args, **kwargs):
+    #def save(self, *args, **kwargs):
+    def create_user(self, *args, **kwargs):
         #if self.is_superuser and self.pk: # if updating existing on djangoadmin
         self.set_password(self.password)
         super(Account, self).save(*args, **kwargs)
+
+    # def create_superuser(self, email, password=None):
+    #     super(Account, self).save(*args, **kwargs)
+        
         
 class Luggage(models.Model):
     luggage_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
