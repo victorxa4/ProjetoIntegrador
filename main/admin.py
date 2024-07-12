@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import Account, Luggage, Luggage_Stage
 
-# Register your models here.
+admin.site.register(Account)
+admin.site.register(Luggage)
+admin.site.register(Luggage_Stage)

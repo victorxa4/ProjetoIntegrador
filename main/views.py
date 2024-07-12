@@ -1,3 +1,31 @@
-from django.shortcuts import render
+from .permissions import *
+from .serializers import *
+from .models import *
+from rest_framework import generics
 
-# Create your views here.
+class Account_View(generics.ListCreateAPIView):
+    queryset = Account.objects.all()
+    serializer_class = Account_Serializer
+    permission_classes = [Attendant_FullAccess|Support_FullAccess|IsOwnAccount]
+class Account_RetrieveUpdateDestroy_View(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Account.objects.all()
+    permission_classes = [Attendant_FullAccess|Support_FullAccess|IsOwnAccount]
+    serializer_class = Account_Serializer
+
+class Luggage_View(generics.ListCreateAPIView):
+    queryset = Luggage.objects.all()
+    serializer_class = Luggage_Serializer
+    permission_classes = [Attendant_FullAccess|Support_FullAccess|Consumer_ReadOnly|Manager_ReadOnly]
+class Luggage_RetrieveUpdateDestroy_View(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Luggage.objects.all()
+    permission_classes = [Attendant_FullAccess|Support_FullAccess|Consumer_ReadOnly|Manager_ReadOnly]
+    serializer_class = Luggage_Serializer
+
+class Luggage_Stage_View(generics.ListCreateAPIView):
+    queryset = Luggage_Stage.objects.all()
+    serializer_class = Luggage_Stage_Serializer
+    permission_classes = [Support_FullAccess|Consumer_ReadOnly|Manager_FullAccess]
+class Luggage_Stage_RetrieveUpdateDestroy_View(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Luggage_Stage.objects.all()
+    permission_classes = [Support_FullAccess|Consumer_ReadOnly|Manager_FullAccess]
+    serializer_class = Luggage_Stage_Serializer
