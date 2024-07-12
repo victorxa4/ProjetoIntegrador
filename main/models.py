@@ -27,7 +27,7 @@ class Account(AbstractUser):
         consumer = 'cn', 'consumer'
         manager = 'mn', 'manager'
 
-    account_cpf = models.CharField(max_length=12, validators=[MinLengthValidator(12), MaxLengthValidator(12)])
+    account_cpf = models.CharField(max_length=12, validators=[MinLengthValidator(12), MaxLengthValidator(12)], unique=True)
 
     account_type = models.CharField(
         max_length=2,
@@ -61,4 +61,4 @@ class Luggage_Stage(models.Model):
         choices=luggage_stage_choices.choices
     )
 
-    luggage_stage_luggage = models.ForeignKey(Luggage, null=False, on_delete=models.CASCADE)
+    luggage_stage_luggage = models.OneToOneField(Luggage, null=False, on_delete=models.CASCADE)
