@@ -19,7 +19,7 @@ urlpatterns = [
     path('luggage/<uuid:pk>/', Luggage_RetrieveUpdateDestroy_View.as_view(), name='single_luggage'),
 
     path('luggage_stage/', Luggage_Stage_View.as_view(), name='luggage_stage'),
-    path('luggage/<uuid:pk>/', Luggage_Stage_RetrieveUpdateDestroy_View.as_view(), name='single_luggage_stage'),
+    path('luggage_stage/<uuid:pk>/', Luggage_Stage_RetrieveUpdateDestroy_View.as_view(), name='single_luggage_stage'),
 
 
 ]
