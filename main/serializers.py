@@ -6,7 +6,6 @@ class Account_Serializer(serializers.ModelSerializer):
     class Meta:
         model = Account
         fields = ['id', 'username', 'date_joined', 'account_cpf', 'account_type', 'password']
-        #fields = '__all__'
         extra_kwargs = {'password':{'write_only': True}}
         read_only_fields  = ['account_type', 'id', 'date_joined']
 

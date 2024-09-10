@@ -4,20 +4,6 @@ from django.core.validators import MinLengthValidator
 from django.core.validators import MaxLengthValidator
 import uuid
 
-# def pkgen(pk_length):
-#     from base64 import b32encode
-#     from hashlib import sha1
-#     from random import random
-#     rude = ('lol',)
-#     bad_pk = True
-#     while bad_pk:
-#         pk = b32encode(sha1(str(random()).encode('utf-8')).digest()).lower()[:pk_length]
-#         bad_pk = False
-#         for rw in rude:
-#             if pk.find(rw) >= 0: bad_pk = True
-#     return pk
-
-
 class Account(AbstractUser):
     class Meta:
         verbose_name = 'Account'
