@@ -38,10 +38,11 @@ class Luggage(models.Model):
 class Luggage_Stage(models.Model):
     luggage_stage_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     class luggage_stage_choices(models.TextChoices):
-        stage1 = 's1', 'stage1'
-        stage2 = 's2', 'stage2'
-        stage3 = 's3', 'stage3'
-        stage4 = 's4', 'stage4'
+        stage1 = 's1', 'Check In'
+        stage2 = 's2', 'Bag Room'
+        stage3 = 's3', 'Aeronave'
+        stage4 = 's4', 'Esteira de Desembarque'
+        stage5 = 's5', 'Chegou ao Destino'
     luggage_stage = models.CharField(
         max_length=2,
         choices=luggage_stage_choices.choices,
