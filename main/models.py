@@ -44,7 +44,8 @@ class Luggage_Stage(models.Model):
         stage4 = 's4', 'stage4'
     luggage_stage = models.CharField(
         max_length=2,
-        choices=luggage_stage_choices.choices
+        choices=luggage_stage_choices.choices,
+        default=luggage_stage_choices.stage1
     )
 
-    luggage_stage_luggage = models.OneToOneField(Luggage, null=False, on_delete=models.CASCADE)
+    luggage_stage_luggage = models.OneToOneField(Luggage, null=False, on_delete=models.CASCADE, editable=False)

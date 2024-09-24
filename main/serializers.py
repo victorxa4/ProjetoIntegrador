@@ -19,6 +19,13 @@ class Luggage_Serializer(serializers.ModelSerializer):
             return luggage_consumer
         else:
             raise serializers.ValidationError('\'luggage_consumer\' must be a consumer (cn) Account).')
+        
+    def create(self, validated_data):
+        luggage = Luggage(**validated_data)
+        luggage.save()
+        luggage_stage = Luggage_Stage(luggage_stage_luggage=luggage).save()
+        print('jsds')
+        return luggage
 
 class Luggage_Stage_Serializer(serializers.ModelSerializer):
     class Meta:
