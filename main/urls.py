@@ -21,5 +21,6 @@ urlpatterns = [
     path('luggage_stage/', Luggage_Stage_View.as_view(), name='luggage_stage'),
     path('luggage_stage/<uuid:pk>/', Luggage_Stage_RetrieveUpdateDestroy_View.as_view(), name='single_luggage_stage'),
 
-
+    path('ticket/', Ticket_View.as_view(), name='ticket'),
+    path('ticket/<uuid:pk>/', Ticket_RetrieveUpdateDestroy_View.as_view(), name='single_ticket'),
 ]

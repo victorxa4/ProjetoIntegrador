@@ -3,6 +3,11 @@ from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinLengthValidator
 from django.core.validators import MaxLengthValidator
 import uuid
+# signals / send mail
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.core.mail import send_mail
+from django.conf import settings
 
 class Account(AbstractUser):
     class Meta:
@@ -50,3 +55,22 @@ class Luggage_Stage(models.Model):
     )
 
     luggage_stage_luggage = models.OneToOneField(Luggage, null=False, on_delete=models.CASCADE, editable=False)
+    
+class Ticket(models.Model):
+    ticket_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    ticket_boarding_gate = models.CharField(max_length=100)
+    ticket_plane = models.CharField(max_length=100)
+    ticket_destiny = models.CharField(max_length=100)
+    ticket_consumer = models.ForeignKey(Account, null=False, on_delete=models.CASCADE)
+
+
+# signals
+
+@receiver(post_save, sender=Account)
+def user_saved(sender, instance, **kwargs):
+    target_email = instance.email
+    if kwargs['created'] and target_email:
+        subject = f'test'
+        message = f'test'
+        from_email = settings.EMAIL_HOST_USER
+        #send_mail(subject, message, from_email, [target_email])

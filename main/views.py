@@ -8,6 +8,7 @@ class Account_View(generics.ListCreateAPIView):
     queryset = Account.objects.all()
     serializer_class = Account_Serializer
     permission_classes = [Attendant_FullAccess|Support_FullAccess|IsOwnAccount]
+
 class Account_RetrieveUpdateDestroy_View(generics.RetrieveUpdateDestroyAPIView):
     queryset = Account.objects.all()
     permission_classes = [Attendant_FullAccess|Support_FullAccess|IsOwnAccount]
@@ -31,3 +32,12 @@ class Luggage_Stage_RetrieveUpdateDestroy_View(generics.RetrieveUpdateDestroyAPI
     queryset = Luggage_Stage.objects.all()
     permission_classes = [Support_FullAccess|Consumer_ReadOnly|Manager_FullAccess]
     serializer_class = Luggage_Stage_Serializer
+    
+class Ticket_View(generics.ListCreateAPIView):
+    queryset = Ticket.objects.all()
+    serializer_class = Ticket_Serializer
+    permission_classes = [Support_FullAccess|Consumer_ReadOnly|Manager_FullAccess|Attendant_FullAccess]
+class Ticket_RetrieveUpdateDestroy_View(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Ticket.objects.all()
+    permission_classes = [Support_FullAccess|Consumer_ReadOnly|Manager_FullAccess|Attendant_FullAccess]
+    serializer_class = Ticket_Serializer
