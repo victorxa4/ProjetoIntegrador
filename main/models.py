@@ -58,9 +58,9 @@ class Luggage_Stage(models.Model):
     
 class Ticket(models.Model):
     ticket_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    ticket_boarding_gate = models.CharField(max_length=100)
-    ticket_plane = models.CharField(max_length=100)
-    ticket_destiny = models.CharField(max_length=100)
+    ticket_boarding_gate = models.CharField(max_length=100, null=False)
+    ticket_plane = models.CharField(max_length=100, null=False)
+    ticket_destiny = models.CharField(max_length=100, null=False)
     ticket_consumer = models.ForeignKey(Account, null=False, on_delete=models.CASCADE)
 
 
